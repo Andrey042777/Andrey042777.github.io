@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Индекс</title>
+<style>
+    .container {
+        height: 400px;
+        width: 300px;
+        background-color: tomato;
+        display: flex;
+        flex-direction: column;
+        transition: all ease 1.50s;
+        border: 5px solid greenyellow;
+    }
+    .item-2 {
+        height: 10%;
+        display: flex;
+        justify-content: space-between;
+        margin: 0 5%;
+    }
+    .item-1 {
+    height: 80%;
+    width: 90%;
+    background-color: darkred;
+    margin: 5%;
+    }
+    .info {
+        width: 45%;
+        /* margin: 5%; */
+        background-color: gold;
+    }
+    body {
+        margin: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+ .container:hover {
+    background-color: blue;
+    box-shadow: 0px 0px 50px 25px darkgreen;
+    transform: translate(-10px, -10px) rotate(3deg);
+ }
+
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="item-1">
+
+        </div>
+        <div class="item-2">
+            <div class="info">
+             Купить   
+            </div>
+            <div class="info">
+                Купить
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цвета</title>
+    <style>
+        body {
+            margin: 0px;
+            height: 100vh;
+            overflow-y: hidden;
+            background-color: #0000;
+            background-image: url(mono.jpeg);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+        .logo {
+            font-size: 6em;
+            font-family: fantasy;
+            font-weight: 900;
+            color: white;
+            position: relative;
+            cursor: pointer;
+        }
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 5px;
+            background-color: #e41749;
+            bottom: 0;
+            left: 0;
+            transition: all ease-in-out .5s;
+        }
+        .logo::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 5px;
+            background-color: #e41749;
+            top: 0;
+            right: 0;
+            transition: all ease-in-out .5s;
+        }
+        .logo:hover::before {
+            width: 100%;
+        }
+        .logo:hover::after {
+            width: 100%;
+        }
+        .arrow {
+            width: 25px;
+            height: 25px;
+            border-left: 5px solid #f9ff21;
+            border-bottom: 5px solid #f9ff21;
+            transform: rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        BLACK & WHITE
+    </div>
+    <div class="arrow">
+
+    </div>
+</body>
+</html>

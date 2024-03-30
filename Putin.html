@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сайт</title>
+    <style>
+        body {
+         margin: 0px;   
+        }
+        .navigator {
+            display: flex;
+            justify-content: space-between;
+            background-color: rgb(56, 208, 42);
+            height: 7vh;
+            align-items: center;
+            position: fixed;
+            width: 100vw;
+        }
+        .vasya {
+        margin: 0x;
+        margin-left: 10px;
+        }
+        a {
+            text-decoration: none;
+            font-size: 1.5em;
+            
+        }
+        .menu a {
+            margin-left: 10px;
+        }
+        .first {
+            background-color: rgb(228, 16, 196);
+        }
+        .two {
+            background-color: rgb(221, 129, 10);
+        }
+        .tree {
+            background-color: rgb(129, 253, 6);
+        }
+        .first, .two, .tree {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        h2 {
+            margin: 0px;
+        }
+        .container {
+            border: 5px solid darkgoldenrod;
+            padding: 50px;
+        }
+        h2 a {
+            color: white;
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigator">
+        <h2 class="vasya">Logotip</h2>
+        <div class="menu">
+            <a href="#home">Home</a>
+            <a href="#questions">Questions</a>
+            <a href="#telegram">Telegram</a>
+        </div>
+    </nav>
+
+    <div class="first" id="home">
+        <div class="container">
+            <h2><a href="">Home 🐣</a></h2>
+
+        </div>
+    </div>
+
+    <div class="two" id="questions">
+        <div class="container">
+          <h2><a href="">Questions</a></h2>
+
+        </div>
+    </div>
+
+    <div class="tree" id="telegram">
+        <div class="container">
+            <h2><a href="">Telegram</a></h2>
+
+        </div>
+    </div>
+</body>
+</html>

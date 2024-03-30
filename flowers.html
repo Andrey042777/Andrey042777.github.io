@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анимация</title>
+    <style>
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    height: 100vh;
+    padding: 0px;
+    background-color: aquamarine;
+    overflow: hidden;
+}
+@font-face {
+    font-family: Agu;
+    src: url(leckerli.ttf) format("opentype");
+}
+h1 {
+    font-family: Agu, cursive;
+    font-size: 4em;
+    color: orangered;
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+    z-index: 100;
+}
+.flower-1 {
+    background-image: url('flower1.png');
+    background-size: cover;
+    position: absolute;
+    top: -310px;
+    background-position: center;
+}
+.flower-2 {
+    background-image: url('flower2.png');
+    background-size: cover;
+    position: absolute;
+    top: -150px;
+    background-position: center;
+}
+.flower-3 {
+    background-image: url('flower3.png');
+    background-size: cover;
+    position: absolute;
+    top: -150px;
+    background-position: center;
+}
+@keyframes falling {
+    to {
+        top: 100vh;
+        transform: rotate(720deg);
+    }
+}
+div:nth-of-type(1) {
+    left: 11vw;
+    width: 150px;
+    height: 150px;
+    animation: falling 12s 2.37s linear infinite;
+}
+div:nth-of-type(2) {
+    left: 22vw;
+    width: 80px;
+    height: 80px;
+    animation: falling 7.5s 2.63s linear infinite;
+}
+div:nth-of-type(3) {
+    left: 76vw;
+    width: 309px;
+    height: 309px;
+    animation: falling 15s 3.11s linear infinite;
+}
+div:nth-of-type(4) {
+    left: 38vw;
+    width: 130px;
+    height: 130px;
+    animation: falling 8.7s 2.29s linear infinite;
+}
+div:nth-of-type(5) {
+    left: 54vw;
+    width: 35px;
+    height: 35px;
+    animation: falling 6.1s 2.41s linear infinite;
+}
+div:nth-of-type(6) {
+    left: 6vw;
+    width: 50px;
+    height: 50px;
+    animation: falling 9.06s 2.20s linear infinite;
+}
+div:nth-of-type(7) {
+    left: 24vw;
+    width: 68px;
+    height: 68px;
+    animation: falling 5.8s 2.11s linear infinite;
+}
+div:nth-of-type(8) {
+    left: 28vw;
+    width: 99px;
+    height: 99px;
+    animation: falling 6.4s 2.71s linear infinite;
+}
+div:nth-of-type(9) {
+    left: 67vw;
+    width: 55px;
+    height: 55px;
+    animation: falling 8.8s 2.25s linear infinite;
+}
+    </style>
+</head>
+<body>
+    <div class="flower-1"></div>
+    <div class="flower-1"></div>
+    <div class="flower-1"></div>
+    <div class="flower-2"></div>
+    <div class="flower-2"></div>
+    <div class="flower-2"></div>
+    <div class="flower-3"></div>
+    <div class="flower-3"></div>
+    <div class="flower-3"></div>
+    <h1>Summer is comming...</h1>
+</body>
+</html>

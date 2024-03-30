@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Анимация</title>
+    <style>
+.divbox {
+position: relative;
+width: 200px;
+height: 200px;
+border: 4px solid #414a4c;
+overflow: hidden;
+box-shadow: -10px -10px 15px rgb(59, 59, 59),
+10px 10px 10px rgba(0, 0, 0, 0.1),
+inset -10px -10px 15px rgba(51, 49, 49, 0.5),
+inset 10px 10px 10px rgba(0, 0, 0, 0.1);
+border-radius: 50%;
+}
+.divbox span {
+position: absolute;
+width: 100%;
+height: 100%;
+border-radius: 50%;
+background: linear-gradient(white, blue, red);
+z-index: -1;
+animation: loader 1.5s linear infinite;
+}
+body {
+margin: 0px;
+padding: 0px;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: #414a4c;
+}
+@keyframes loader {
+from {
+transform: rotate(0deg);
+}
+to {
+transform: rotate(360deg);
+
+}
+
+}
+    </style>
+</head>
+<body>
+    <div class="divbox">
+        <span></span>
+    </div>
+
+
+
+</body>
+</html>
