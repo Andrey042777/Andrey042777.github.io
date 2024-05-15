@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+    <!-- <h1 id="example">Старый контент</h1>
+    <button type="button" onclick='document.getElementById("example").innerHTML = "Новый контент"'>Нажми на меня!</button> -->
+    <p>Игрок 1: funny_nickname</p>
+    <script>
+        const para = document.querySelector('p');
+        para.addEventListener('click', updateName);
+
+        function updateName() {
+            let name = prompt('Введите новое имя');
+            para.textContent = 'Игрок 1' + name;
+        }
+    </script>
+</body>
+</html>
