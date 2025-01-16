@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Зоопарк</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], select {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .zoo-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+        }
+
+        .zoo-box {
+            width: 40%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .zoo-box h3 {
+            text-align: center;
+        }
+
+        .animal-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .animal-item {
+            margin: 10px 0;
+        }
+
+        .emoji {
+            font-size: 24px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Зоопарк</h1>
+    <form id="animalForm">
+        <label for="animalForm">Название животного:</label>
+        <input type="text" id="animalName" placeholder="Введите название" required>
+        <label for="animalType">Тип животного:</label>
+        <select id="animalType">
+        <option value="herbivore">Травоядное</option>
+        <option value="carnivore">Хищник</option>
+    </select>
+
+    <button type="submit">Добавить животное</button>
+    </form>
+
+    <div class="zoo-container">
+        <div class="zoo-box" id="herbivores">
+            <h3>Травоядные</h3>
+            <ul class="animal-list" id="herbivoreList"></ul>
+        </div>
+        <div class="zoo-box" id="carnivores">
+            <h3>Хищники</h3>
+            <ul class="animal-list" id="carnivoreList"></ul>
+        </div>
+    </div>
+
+    <script>
+
+        const herbivoreList = document.getElementById('herbivoreList')
+        const carnivoreList = document.getElementById('carnivoreList')
+
+        let animals = JSON.parse(localStorage.getItem('animals')) || [];
+
+        function renderAnimals() {
+            herbivoreList.innerHTML = '';
+            carnivoreList.innerHTML = '';
+            animals.forEach(animal => {
+
+            const newAnimalItem = document.createElement('li')
+            newAnimalItem.textContent = animal.name;
+
+             //Кнопка для удаления
+             const deleteButton =document.createElement('button');
+                deleteButton.textContent = "Удалить";
+                deleteButton.classList.add('delete-button');
+
+             //Обработчик для удаления
+             deleteButton.addEventListener('click', function() {
+                animals = animals.filter(a => a.id !== animal.id);
+                saveAnimals();
+                renderAnimals();
+            });
+
+            const emoji = document.createElement('span');
+            emoji.classList.add('emoji');
+            emoji.textContent = animal.type === "herbivore" ? "🌿" : "🥩"
+            /*if (animalType === "herbivore") {
+                emoji.textContent = "🌿";
+                //document.getElementById('herbivoreList').appendChild(newAnimalItem);
+            }
+            else if (animalType === "carnivore") {
+                emoji.textContent = "🥩";
+                //document.getElementById('carnivoreList').appendChild(newAnimalItem);
+            }
+                */
+            let editButton = document.createElement('button')
+            editButton.textContent = 'Изменить'
+            editButton.classList.add('edit-button')
+            newAnimalItem.appendChild(emoji);
+            newAnimalItem.appendChild(deleteButton);
+            editButton.addEventListener('click', clickEditFunction)
+            function clickEditFunction(event) {
+                let currentText = event.target.parentElement.textContent
+                let emojiHerbivore = '🌿'
+                let emojiCarnivore = '🥩'
+                let emojiHerbivoreIndex = currentText.indexOf(emojiHerbivore)
+                let emojiCarnivoreIndex = currentText.indexOf(emojiCarnivore)
+                if (emojiHerbivoreIndex > 0) {
+                    let herbivoreText = currentText.slice(0, emojiHerbivoreIndex)
+                    let herbivoreDefaultText = currentText.slice(emojiHerbivoreIndex)
+                    let inputObject = inputElement(herbivoreText)
+                    console.log(herbivoreText)
+                }
+                 else if (emojiCarnivoreIndex > 0) {
+                    let carnivoreText = currentText.slice(0, emojiCarnivoreIndex)
+                    let carnivoreDefaultText = currentText.slice(emojiCarnivoreIndex)
+                    let inputObject = inputElement(carnivoreText)
+                    console.log(carnivoreText)
+                }
+            }
+            function inputElement(text) {
+                let input = document.createElement('input')
+            input.type = 'text'
+            input.value = text
+            return input
+            }
+            
+            newAnimalItem.appendChild(editButton);
+            if (animal.type === 'herbivore') {
+                herbivoreList.appendChild(newAnimalItem);
+            } else {
+                carnivoreList.appendChild(newAnimalItem);
+            }
+        })
+        }
+        
+        document.getElementById('animalForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+        
+        const animalName = document.getElementById('animalName').value.trim();
+        const animalType = document.getElementById('animalType').value;
+        console.log(animalName)
+        console.log(animalType)
+        if (!animalName) {
+            alert('Пожалуйста введите название животного!')
+            return;
+        }
+        const newAnimal = {
+            id: Date.now(),
+            name: animalName,
+            type: animalType
+        };
+        animals.push(newAnimal);
+        saveAnimals(); 
+        renderAnimals();
+        /*const newAnimalItem = document.createElement('li')
+        newAnimalItem.textContent = animalName;
+        //Кнопка для удаления
+        const deleteButton =document.createElement('button');
+        deleteButton.textContent = "Удалить";
+        deleteButton.classList.add('delete-button');
+        //Обработчик для удаления
+        deleteButton.addEventListener('click', function() {
+            newAnimalItem.remove();
+        })
+        const emoji = document.createElement('span');
+        emoji.classList.add('emoji');
+        if (animalType === "herbivore") {
+            emoji.textContent = "🌿";
+            document.getElementById('herbivoreList').appendChild(newAnimalItem);
+        }
+        else if (animalType === "carnivore") {
+            emoji.textContent = "🥩";
+            document.getElementById('carnivoreList').appendChild(newAnimalItem);
+        }
+        newAnimalItem.appendChild(emoji);
+        newAnimalItem.appendChild(deleteButton);*/
+
+
+
+        document.getElementById('animalName').value = '';
+    });
+    function saveAnimals() {
+        localStorage.setItem('animals', JSON.stringify(animals));
+    }
+
+    renderAnimals();
+    </script>
+</body>
+</html>
