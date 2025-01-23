@@ -1,3 +1,6 @@
+
+  
+     
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -149,22 +152,60 @@
             editButton.addEventListener('click', clickEditFunction)
             function clickEditFunction(event) {
                 let currentText = event.target.parentElement.textContent
+                let parentElement = event.target.parentElement
                 let emojiHerbivore = '🌿'
                 let emojiCarnivore = '🥩'
                 let emojiHerbivoreIndex = currentText.indexOf(emojiHerbivore)
                 let emojiCarnivoreIndex = currentText.indexOf(emojiCarnivore)
+                
+                let editButton = document.createElement('input')
+                editButton.type = 'button'
+                editButton.name = 'editButton'
+                editButton.value = 'Подтвердить'
+                let cancelButton = document.createElement('input')
+                cancelButton.type = 'button'
+                cancelButton.name = 'cancelButton'
+                cancelButton.value = 'Отменить'
+
                 if (emojiHerbivoreIndex > 0) {
                     let herbivoreText = currentText.slice(0, emojiHerbivoreIndex)
                     let herbivoreDefaultText = currentText.slice(emojiHerbivoreIndex)
                     let inputObject = inputElement(herbivoreText)
-                    console.log(herbivoreText)
+                    let editInput = document.createElement('input')
+                    editInput.type = 'text'
+                    editInput.name = 'edit-input'
+                    editInput.value = herbivoreText
+                    parentElement.textContent = ''
+                    parentElement.append(editInput)
+                    let emojiText = document.createTextNode('🌿')
+                    parentElement.appendChild(emojiText)
+                    parentElement.appendChild(editButton)
+                    parentElement.appendChild(cancelButton)
+                    
+
+
+
+                    editButton.addEventListener('click',
+                        (event) => {
+                            let editedText = document.querySelector('input[name=edit-input]').value
+                            let currentElement = event.target.parentElement
+                            currentElement.textContent = `${editedText} 🌿 `
+                            editButton.value = 'Изменить'
+                            currentElement.append(editButton);
+
+                            
+                        }
+                    )
+                    console.log(editInput)
                 }
                  else if (emojiCarnivoreIndex > 0) {
                     let carnivoreText = currentText.slice(0, emojiCarnivoreIndex)
                     let carnivoreDefaultText = currentText.slice(emojiCarnivoreIndex)
                     let inputObject = inputElement(carnivoreText)
                     console.log(carnivoreText)
+
                 }
+
             }
             function inputElement(text) {
                 let input = document.createElement('input')
