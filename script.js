@@ -20,5 +20,30 @@ let Boat = function(name, color, size) {
         this.posX += Math.random() * 5;
         this.element.style.left = this.posX + "px";
     }
-    
+    this.checkCollision = function() {
+        if (this.posX + this.width > road.clientWidth) {
+            return true }
+        return false
+
+    }
+    this.winner = function() {
+        this.element.className = 'boat winner';
+    }
 } 
+boat_1 = new Boat('Duck', 'blue', 100);
+boat_1.create();
+boat_2 = new Boat('Musk', 'green', 100);
+boat_2.create();
+let boats = [boat_2, boat_1];
+gameLoop = setInterval(game, 25);
+function game() {
+  
+    for (let i = 0; i < boats.length; i++) {
+        let b = boats[i]
+        b.move();
+        if (b.checkCollision()) {
+            b.winner();
+            clearInterval(gameLoop)
+        }
+    }
+}
